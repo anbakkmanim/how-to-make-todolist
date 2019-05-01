@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <add-todo />
-    <todo-list :todos="todos" />
+    <todo-list :todos="getAllTodos" />
     <delete-all-todo />
   </div>
 </template>
@@ -18,20 +18,9 @@ export default {
     TodoList,
     DeleteAllTodo
   },
-  data() {
-    return {
-      todos: [
-        {
-          id: 0,
-          text: "TodoList 만들기",
-          completed: false
-        },
-        {
-          id: 1,
-          text: "Vue.js 배우기",
-          completed: false
-        }
-      ]
+  computed: {
+    getAllTodos() {
+      return this.$store.getters.getAllTodos;
     }
   }
 }

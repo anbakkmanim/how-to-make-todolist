@@ -1,6 +1,6 @@
 <template>
   <li class="todo-item">
-    <span @click="handleChange()" :class="{completed: todo.completed}">
+    <span @click="handleUpdate()" :class="{'completed': todo.completed}">
       {{ todo.text }}
     </span>
     <span @click="handleDelete()">
@@ -14,16 +14,18 @@ export default {
   name: "todo-item",
   props: ["todo"],
   methods: {
-    handleChange() {
-
+    handleUpdate() {
+      this.$store.commit('updateTodo', this.todo.id);
     },
     handleDelete() {
-
+      this.$store.commit('deleteTodo', this.todo.id);
     }
   }
 }
 </script>
 
 <style lang="scss">
-
+.completed {
+  text-decoration: line-through;
+}
 </style>

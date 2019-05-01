@@ -15,7 +15,8 @@ export default {
   },
   methods: {
     handleAdd() {
-      
+      this.$store.commit('addTodo', this.text);
+      this.text = "";
     }
   }
 }
