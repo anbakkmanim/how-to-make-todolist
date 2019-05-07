@@ -281,7 +281,7 @@ new Vue({
 Vuex Store는 기본적으로 `State`, `Getters`, `Mutations`, `Actions`의 구조로 형성되어 있습니다.
 
 - `State`: 어떠한 상태를 저장해놓는 저장소입니다.
-- `Getters`: `State`에서 무언가를 가공하여 얻기 쉽도록 도와주는 `get` 함수들입니다.
+- `Getters`: `State`에서 어떠한 데이터를 가공하여 원하는 대로 얻기 쉽도록 도와주는 `get` 함수들입니다.
 - `Mutations`: 저장된 `State`를 변형하는 `set` 함수들입니다.
 - `Actions`: `Mutations`를 커밋하는 함수들입니다. 주로 비동기 처리에 사용합니다.
 
