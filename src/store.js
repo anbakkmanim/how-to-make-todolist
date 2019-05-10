@@ -3,6 +3,10 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const findIndexByTodoId = (state, id) => {
+  return state.todos.findIndex(todo => todo.id === id);
+};
+
 export default new Vuex.Store({
   state: {
     todos: []
@@ -28,11 +32,13 @@ export default new Vuex.Store({
       });
     },
     deleteTodo(state, payload) {
-      state.todos = state.todos.filter(todo => todo.id !== payload);
+      let todoIndex = findIndexByTodoId(state, payload);
+
+      state.todos.splice(todoIndex, 1);
     },
     updateTodo(state, payload) {
-      let todoIndex = state.todos.findIndex(todo => todo.id === payload);
-
+      let todoIndex = findIndexByTodoId(state, payload);
+      
       state.todos[todoIndex].completed = !state.todos[todoIndex].completed;
     }
   }

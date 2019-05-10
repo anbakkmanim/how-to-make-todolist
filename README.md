@@ -297,6 +297,10 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const findIndexByTodoId = (state, id) => {
+  return state.todos.findIndex(todo => todo.id === id);
+};
+
 export default new Vuex.Store({
   state: {
     todos: []
@@ -322,16 +326,22 @@ export default new Vuex.Store({
       });
     },
     deleteTodo(state, payload) {
-      state.todos = state.todos.filter(todo => todo.id !== payload);
+      let todoIndex = findIndexByTodoId(state, payload);
+
+      state.todos.splice(todoIndex, 1);
     },
     updateTodo(state, payload) {
-      let todoIndex = state.todos.findIndex(todo => todo.id === payload);
+      let todoIndex = findIndexByTodoId(state, payload);
 
       state.todos[todoIndex].completed = !state.todos[todoIndex].completed;
     }
   }
 });
 ```
+
+> 190510 수정: `deleteTodo`에서 `filter()`를 사용하게 되면 불필요한 새 배열을 만들게 되므로, `splice()` 메서드로 대체하였습니다.
+
+> 190510 수정: `deleteTodo`와 `updateTodo` 모두 인덱스를 검색하는 메서드가 있어 이를 내부 메서드로 분기하였습니다.
 
 
 
